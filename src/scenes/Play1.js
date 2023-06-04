@@ -1,9 +1,12 @@
-class Play extends Phaser.Scene{
+class Play1 extends Phaser.Scene{
     constructor(){
-        super("menuScene");
+        super("play1Scene");
     }
     preload(){
         this.load.image('background', './assets/parkinglot.png');
+    }
+
+    create(){
         game.config.backgroundColor = "#a1a2a6";
     }
 }
