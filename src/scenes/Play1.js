@@ -54,16 +54,16 @@ class Play1 extends Phaser.Scene{
             this.scene.start("menuScene");
         }
 
-        if(keyLEFT.isDown && 0 < this.player.x) { 
+        if(keyLEFT.isDown && 0 < this.player.x && this.gameOver == false) { 
             this.player.x -= 5;
         }
-        if (keyRIGHT.isDown && this.player.x < 700) { 
+        if (keyRIGHT.isDown && this.player.x < 700 && this.gameOver == false) { 
             this.player.x += 5;
         }
-        if (keyUP.isDown && 0 < this.player.y) {
+        if (keyUP.isDown && 0 < this.player.y && this.gameOver == false) {
             this.player.y -= 5;
         }
-        if (keyDOWN.isDown && this.player.y < 660) {
+        if (keyDOWN.isDown && this.player.y < 660 && this.gameOver == false) {
             this.player.y += 5;
         }
         
