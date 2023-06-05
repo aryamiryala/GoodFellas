@@ -20,7 +20,7 @@ class Play1 extends Phaser.Scene{
         this.audi = this.physics.add.sprite(135, 290, 'audi').setOrigin(0,0).setScale(0.75);
         this.blackviper = this.physics.add.sprite(325, 300, 'blackviper').setOrigin(0,0).setScale(0.75);
         this.taxi = this.physics.add.sprite(420, 300, 'taxi').setOrigin(0,0).setScale(0.75);
-        this.mvan = this.physics.add.sprite(145, 60, 'minivan').setOrigin(0,0).setScale(0.75);
+        this.mvan = this.physics.add.sprite(135, 60, 'minivan').setOrigin(0,0).setScale(0.75);
         this.player = this.physics.add.sprite(620, 440, 'car').setOrigin(0,0).setScale(0.75);
         this.gameOver = false;
 
