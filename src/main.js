@@ -10,7 +10,7 @@ let config = {
         }
 
     },
-    backgroundColor: "#000000",
+    //backgroundColor: "#000000",
     scene: [Menu, Play1]
 }
 

@@ -3,10 +3,12 @@ class Play1 extends Phaser.Scene{
         super("play1Scene");
     }
     preload(){
-        this.load.image('background', './assets/parkinglot.png');
+        this.load.image('parkinglot', './assets/parkinglot.png');
     }
 
     create(){
-        game.config.backgroundColor = "#a1a2a6";
+        const cam1 = this.cameras.main.setViewport(0, 0, 760, 600).setBackgroundColor("#94979e");
+        this.background = this.add.tileSprite(60, 60, 626, 416, 'parkinglot').setOrigin(0,0);
+        
     }
 }

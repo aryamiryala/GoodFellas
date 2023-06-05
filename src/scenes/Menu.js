@@ -21,6 +21,7 @@ class Menu extends Phaser.Scene{
             },
             fixedWidth: 0
         };
+       
 
         this.add.text(game.config.width/2, game.config.height/1.9, 'Press I for instructions', menuConfig).setOrigin(0.5);
     
