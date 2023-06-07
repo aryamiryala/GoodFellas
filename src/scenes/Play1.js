@@ -28,7 +28,7 @@ class Play1 extends Phaser.Scene{
         var blackviper_body = this.matter.bodies.rectangle(420, 390, 70, 150);
 
         this.taxi = this.matter.add.sprite(520, 350, 'taxi').setScale(0.75);
-        var taxi_body = this.matter.bodies.rectangle(510, 400, 70, 150);
+        var taxi_body = this.matter.bodies.rectangle(510, 400, 70, 170);
         
         this.mvan = this.matter.add.sprite(135, 60, 'minivan').setScale(0.75);
         var mvan_body = this.matter.bodies.rectangle(230, 160, 70, 150);
@@ -40,11 +40,15 @@ class Play1 extends Phaser.Scene{
         var minitruck_body = this.matter.bodies.rectangle(520, 150, 70, 150);
 
         this.player = this.matter.add.sprite(620, 440, 'car').setScale(0.75);
-        var player_body = this.matter.bodies.rectangle(720, 550, 70, 150);
+        var player_body = this.matter.bodies.rectangle(50, 80, 70, 150);
+        this.player.setFixedRotation();
 
         //add bush
-        this.bush = this.matter.add.sprite(120, 70, 'bush');
-        var bush_body = this.matter.bodies.rectangle(370, 275, 350, 50);
+        this.bush = this.matter.add.sprite(120, 70, 'bush').setScale(1.1);
+        var bush_body = this.matter.bodies.rectangle(370, 275, 390, 70);
+
+        //set world bounds
+        this.matter.world.setBounds(0, 0, 760, 600);
 
 
     
@@ -77,6 +81,7 @@ class Play1 extends Phaser.Scene{
     }
 
     update(){
+        this.player.angle = 90;
         if (this.gameOver == true)
         {
             this.gameDone();
@@ -90,18 +95,16 @@ class Play1 extends Phaser.Scene{
         }
 
         if(keyLEFT.isDown && 0 < this.player.x && this.gameOver == false) { //car goes left
-            this.player.x -= 5;
-            this.player.angle = -90;
+            this.player.setAngularVelocity(-0.01);
         }
         if (keyRIGHT.isDown && this.player.x < 700 && this.gameOver == false) {  //car goes right
-            this.player.x += 5;
-            //this.player.angle = 180;
+            this.player.setAngularVelocity(0.01);
         }
         if (keyUP.isDown && 0 < this.player.y && this.gameOver == false) { //car goes forward
-            this.player.y -= 5;
+            this.player.thrust(0.01);
         }
         if (keyDOWN.isDown && this.player.y < 660 && this.gameOver == false) { //car goes back
-            this.player.y += 5;
+            this.player.thrust(-0.01);
         }
         
         // this.matter.add.overlap(this.player, this.audi, gameLost, null, this);
