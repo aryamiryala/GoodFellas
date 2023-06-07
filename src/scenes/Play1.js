@@ -8,8 +8,10 @@ class Play1 extends Phaser.Scene{
         this.load.image('blackviper', './assets/black_viper.png');
         this.load.image('taxi', './assets/taxi.png');
         this.load.image('minivan', './assets/Mini_van.png');
+        this.load.image('truck', './assets/truck.png')
+        this.load.image('minitruck', './assets/Mini_truck.png')
         this.load.image('car', './assets/Car.png');
-        this.load.image('bush', './assets/bush.png');
+        //this.load.image('bush', './assets/bush.png');
 
 
     }
@@ -31,7 +33,14 @@ class Play1 extends Phaser.Scene{
         this.mvan = this.matter.add.sprite(135, 60, 'minivan').setScale(0.75);
         var mvan_body = this.matter.bodies.rectangle(230, 160, 70, 150);
 
-        //this.player = this.matter.add.sprite(620, 440, 'car').setOrigin(0,0).setScale(0.75);
+        this.truck = this.matter.add.sprite(135, 60, 'truck').setScale(0.75);
+        var truck_body = this.matter.bodies.rectangle(330, 160, 70, 150);
+
+        this.minitruck = this.matter.add.sprite(135, 60, 'minitruck').setScale(0.75);
+        var minitruck_body = this.matter.bodies.rectangle(520, 150, 70, 150);
+
+        this.player = this.matter.add.sprite(620, 440, 'car').setScale(0.75);
+        var player_body = this.matter.bodies.rectangle(720, 550, 70, 150);
 
         //add bush
         //this.bush = this.matter.add.sprite(120, 70, 'bush').setOrigin(0,0);
@@ -44,6 +53,9 @@ class Play1 extends Phaser.Scene{
         this.blackviper.setExistingBody(blackviper_body);
         this.taxi.setExistingBody(taxi_body);
         this.mvan.setExistingBody(mvan_body);
+        this.truck.setExistingBody(truck_body);
+        this.minitruck.setExistingBody(minitruck_body);
+        this.player.setExistingBody(player_body);
         // this.blackviper.body.setSize(110, 216, true);
         // this.taxi.body.setSize(110, 216, true);
         // this.mvan.body.setSize(110, 216, true);
