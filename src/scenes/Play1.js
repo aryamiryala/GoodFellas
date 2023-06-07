@@ -57,7 +57,7 @@ class Play1 extends Phaser.Scene{
         var minitruck_body = this.matter.bodies.rectangle(520, 200, 70, 150);
 
         this.player = this.matter.add.sprite(620, 440, 'car').setScale(0.75);
-        var player_body = this.matter.bodies.rectangle(100, 70, 160, 70);
+        var player_body = this.matter.bodies.rectangle(100, 70, 155, 60);
 
         //used to check for correct parking
         this.Win = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
@@ -115,14 +115,17 @@ class Play1 extends Phaser.Scene{
         this.bush.setStatic(true);
 
         //make cars stay still 
-        this.audi.setStatic(true);
-        this.audi2.setStatic(true);
-        this.blackviper.setStatic(true);
-        this.taxi.setStatic(true);
-        this.mvan.setStatic(true);
-        this.truck.setStatic(true);
-        this.minitruck.setStatic(true);
-        // this.fence.setStatic(true);
+        // this.audi.setStatic(true);
+        // this.audi2.setStatic(true);
+        // this.blackviper.setStatic(true);
+        // this.taxi.setStatic(true);
+        // this.mvan.setStatic(true);
+        // this.truck.setStatic(true);
+        // this.minitruck.setStatic(true);
+        this.fenceTop.setStatic(true);
+        this.fenceBot.setStatic(true);
+        this.fenceLeft.setStatic(true);
+        this.fenceRight.setStatic(true);
 
 
 
