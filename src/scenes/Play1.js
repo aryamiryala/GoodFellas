@@ -22,6 +22,7 @@ class Play1 extends Phaser.Scene{
         this.taxi = this.physics.add.sprite(420, 300, 'taxi').setOrigin(0,0).setScale(0.75);
         this.mvan = this.physics.add.sprite(135, 60, 'minivan').setOrigin(0,0).setScale(0.75);
         this.player = this.physics.add.sprite(620, 440, 'car').setOrigin(0,0).setScale(0.75);
+    
         this.gameOver = false;
 
         //car hitbox for collision
@@ -54,16 +55,18 @@ class Play1 extends Phaser.Scene{
             this.scene.start("menuScene");
         }
 
-        if(keyLEFT.isDown && 0 < this.player.x && this.gameOver == false) { 
+        if(keyLEFT.isDown && 0 < this.player.x && this.gameOver == false) { //car goes left
             this.player.x -= 5;
+            this.player.angle = -90;
         }
-        if (keyRIGHT.isDown && this.player.x < 700 && this.gameOver == false) { 
+        if (keyRIGHT.isDown && this.player.x < 700 && this.gameOver == false) {  //car goes right
             this.player.x += 5;
+            //this.player.angle = 180;
         }
-        if (keyUP.isDown && 0 < this.player.y && this.gameOver == false) {
+        if (keyUP.isDown && 0 < this.player.y && this.gameOver == false) { //car goes forward
             this.player.y -= 5;
         }
-        if (keyDOWN.isDown && this.player.y < 660 && this.gameOver == false) {
+        if (keyDOWN.isDown && this.player.y < 660 && this.gameOver == false) { //car goes back
             this.player.y += 5;
         }
         
