@@ -11,7 +11,7 @@ class Play1 extends Phaser.Scene{
         this.load.image('truck', './assets/truck.png')
         this.load.image('minitruck', './assets/Mini_truck.png')
         this.load.image('car', './assets/Car.png');
-        //this.load.image('bush', './assets/bush.png');
+        this.load.image('bush', './assets/bush.png');
 
 
     }
@@ -43,7 +43,9 @@ class Play1 extends Phaser.Scene{
         var player_body = this.matter.bodies.rectangle(720, 550, 70, 150);
 
         //add bush
-        //this.bush = this.matter.add.sprite(120, 70, 'bush').setOrigin(0,0);
+        this.bush = this.matter.add.sprite(120, 70, 'bush');
+        var bush_body = this.matter.bodies.rectangle(350, 320, 370, 20);
+
 
     
         this.gameOver = false;
@@ -56,6 +58,8 @@ class Play1 extends Phaser.Scene{
         this.truck.setExistingBody(truck_body);
         this.minitruck.setExistingBody(minitruck_body);
         this.player.setExistingBody(player_body);
+        this.bush.setExistingBody(bush_body);
+
         // this.blackviper.body.setSize(110, 216, true);
         // this.taxi.body.setSize(110, 216, true);
         // this.mvan.body.setSize(110, 216, true);
