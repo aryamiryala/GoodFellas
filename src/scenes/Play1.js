@@ -44,7 +44,7 @@ class Play1 extends Phaser.Scene{
 
         //add bush
         this.bush = this.matter.add.sprite(120, 70, 'bush');
-        var bush_body = this.matter.bodies.rectangle(350, 320, 370, 20);
+        var bush_body = this.matter.bodies.rectangle(370, 275, 350, 50);
 
 
     
