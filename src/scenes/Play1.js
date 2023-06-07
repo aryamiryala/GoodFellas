@@ -178,39 +178,40 @@ class Play1 extends Phaser.Scene{
             this.gameWonScreen();
             if (Phaser.Input.Keyboard.JustDown(keyR)){
                 this.scene.restart();
+                this.backgroundSong.destroy();
             }
             if (Phaser.Input.Keyboard.JustDown(keyM)){
                 this.scene.start("menuScene");
+                this.backgroundSong.destroy();
             }
         }
 
         //Check for game lost
-        if (this.gameOver == true && this.stop == false)
+        if (this.gameOver == true && this.stop == false && this.gameWon == false)
         {
             this.gameLost();
-        }
-        if (this.gameOver == true && Phaser.Input.Keyboard.JustDown(keyR)){
-            this.scene.restart();
-        }
-
-        if (this.gameOver == true && Phaser.Input.Keyboard.JustDown(keyM)){
-            this.scene.start("menuScene");
-            this.backgroundSong.destroy();  
-
+            if (Phaser.Input.Keyboard.JustDown(keyR)){
+                this.scene.restart();
+                this.backgroundSong.destroy();
+            }
+            if (Phaser.Input.Keyboard.JustDown(keyM)){
+                this.scene.start("menuScene");
+                this.backgroundSong.destroy();
+            }
         }
 
         //If game is still on going
         //Movement for player
-        if(keyLEFT.isDown && 0 < this.player.x && this.gameOver == false) { //car goes left
+        if(keyLEFT.isDown && 0 < this.player.x && this.gameOver == false && this.gameWon == false) { //car goes left
             this.player.setAngularVelocity(-0.015);
         }
-        if (keyRIGHT.isDown && this.player.x < 760 && this.gameOver == false) {  //car goes right
+        if (keyRIGHT.isDown && this.player.x < 760 && this.gameOver == false && this.gameWon == false) {  //car goes right
             this.player.setAngularVelocity(0.015);
         }
-        if (keyUP.isDown && 0 < this.player.y && this.gameOver == false) { //car goes forward
+        if (keyUP.isDown && 0 < this.player.y && this.gameOver == false && this.gameWon == false) { //car goes forward
             this.player.thrust(0.01);
         }
-        if (keyDOWN.isDown && this.player.y < 660 && this.gameOver == false) { //car goes back
+        if (keyDOWN.isDown && this.player.y < 660 && this.gameOver == false && this.gameWon == false) { //car goes back
             this.player.thrust(-0.01);
         }
         
