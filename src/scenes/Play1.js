@@ -57,19 +57,28 @@ class Play1 extends Phaser.Scene{
         var minitruck_body = this.matter.bodies.rectangle(520, 200, 70, 150);
 
         this.player = this.matter.add.sprite(620, 440, 'car').setScale(0.75);
-        var player_body = this.matter.bodies.rectangle(350, 70, 160, 70);
+        var player_body = this.matter.bodies.rectangle(100, 70, 160, 70);
 
         //used to check for correct parking
         this.Win = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
         var nothing_body = this.matter.bodies.rectangle(325, 360, 100, 5);
+
+        //Used for world borders
+        this.fenceTop = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        var fenceTop_body = this.matter.bodies.rectangle(380, 0, 760, 1);
+
+        this.fenceBot = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        var fenceBot_body = this.matter.bodies.rectangle(380, 650, 760, 1);
+
+        this.fenceLeft = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        var fenceLeft_body = this.matter.bodies.rectangle(0, 325, 1, 650);
+
+        this.fenceRight = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        var fenceRight_body = this.matter.bodies.rectangle(760, 325, 1, 650);
         
         //add bush
         this.bush = this.matter.add.sprite(120, 70, 'bush').setScale(1.1);
         var bush_body = this.matter.bodies.rectangle(370, 325, 390, 70);
-
-        //adding fence
-        // this.fence = this.matter.add.sprite(120, 70, 'fence').setScale(0.25);
-        // var fence_body = this.matter.bodies.rectangle(50, 620, 40, 70);
 
         //set world bounds
         this.matter.world.setBounds(0, 0, 760, 650);
@@ -88,8 +97,15 @@ class Play1 extends Phaser.Scene{
         this.minitruck.setExistingBody(minitruck_body);
         this.player.setExistingBody(player_body);
         this.bush.setExistingBody(bush_body);
+
+        //empty parking spot win
         this.Win.setExistingBody(nothing_body);
-        //this.fence.setExistingBody(fence_body);
+
+        //fences on borders
+        this.fenceTop.setExistingBody(fenceTop_body);
+        this.fenceBot.setExistingBody(fenceBot_body);
+        this.fenceLeft.setExistingBody(fenceLeft_body);
+        this.fenceRight.setExistingBody(fenceRight_body);
 
         //makes car harder to move
         this.player.setFrictionAir(0.08);
@@ -151,6 +167,27 @@ class Play1 extends Phaser.Scene{
             this.crashAudio.play(); 
         })
 
+        //collide with fences = game lost
+        this.player.setOnCollideWith(this.fenceTop, pair => {
+            this.gameOver = true;
+            this.crashAudio.play(); 
+        })
+
+        this.player.setOnCollideWith(this.fenceBot, pair => {
+            this.gameOver = true;
+            this.crashAudio.play(); 
+        })
+
+        this.player.setOnCollideWith(this.fenceLeft, pair => {
+            this.gameOver = true;
+            this.crashAudio.play(); 
+        })
+
+        this.player.setOnCollideWith(this.fenceRight, pair => {
+            this.gameOver = true;
+            this.crashAudio.play(); 
+        })
+
         //park fully inside parking spot = game win
         this.player.setOnCollideWith(this.Win, pair => {
             this.gameWon = true;
@@ -174,22 +211,17 @@ class Play1 extends Phaser.Scene{
 
     update(){
         //Check for game win
-        if (this.gameWon == true){
+        if (this.gameWon == true && this.stop == false){
             this.gameWonScreen();
-            if (Phaser.Input.Keyboard.JustDown(keyR)){
-                this.scene.restart();
-                this.backgroundSong.destroy();
-            }
-            if (Phaser.Input.Keyboard.JustDown(keyM)){
-                this.scene.start("menuScene");
-                this.backgroundSong.destroy();
-            }
         }
 
         //Check for game lost
         if (this.gameOver == true && this.stop == false && this.gameWon == false)
         {
             this.gameLost();
+        }
+
+        if (this.gameOver == true || this.gameWon == true){
             if (Phaser.Input.Keyboard.JustDown(keyR)){
                 this.scene.restart();
                 this.backgroundSong.destroy();
@@ -203,7 +235,7 @@ class Play1 extends Phaser.Scene{
         //If game is still on going
         //Movement for player
         if(keyLEFT.isDown && 0 < this.player.x && this.gameOver == false && this.gameWon == false) { //car goes left
-            this.player.setAngularVelocity(-0.015);
+            this.player.setAngularVelocity(-0.02);
         }
         if (keyRIGHT.isDown && this.player.x < 760 && this.gameOver == false && this.gameWon == false) {  //car goes right
             this.player.setAngularVelocity(0.015);
@@ -249,6 +281,7 @@ class Play1 extends Phaser.Scene{
     
         };
 
+        this.stop = true;
         this.add.text(game.config.width/2, game.config.height/2, 'GOOD JOB HENRY', textConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'To be continued...', textConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 128, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);

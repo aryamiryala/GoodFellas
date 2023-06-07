@@ -8,7 +8,7 @@ class Play1Title extends Phaser.Scene{
     }
     
     create(){
-        this.background= this.add.tileSprite(60, 60, 640, 480, 'title').setOrigin(0,0);
+        this.background= this.add.tileSprite(60, 0, 640, 480, 'title').setOrigin(0,0);
 
          //add music, set volume, play it
          this.backgroundSong = this.sound.add('sfx_background', {volume: 0.5});   
@@ -48,7 +48,8 @@ class Play1Title extends Phaser.Scene{
         Your objective in this scene is to try and park the car in the open parking space. 
         Because Henry was a kid in this scene and doesn't know how to drive properly 
         it will be harder in this game to manuever the car.
-        If bumped into another you automatically lose. Use the arrow keys to move the car. 
+        If bumped into another car or the border of the screen, you automatically lose. 
+        IMPORTANT! ! ! : Use the arrow keys to move the car. 
         Good Luck!!! 
         `;
 
