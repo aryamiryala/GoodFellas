@@ -20,10 +20,17 @@ class Play1 extends Phaser.Scene{
         this.background = this.add.tileSprite(60, 60, 626, 416, 'parkinglot').setOrigin(0,0);
         //car positions
         this.audi = this.matter.add.sprite(230, 390, 'audi').setScale(0.75);
-        var sprite_body = this.matter.bodies.rectangle(230, 390, 100, 150);
-        //this.blackviper = this.matter.add.sprite(325, 300, 'blackviper').setOrigin(0,0).setScale(0.75);
-        //this.taxi = this.matter.add.sprite(420, 300, 'taxi').setOrigin(0,0).setScale(0.75);
-        //this.mvan = this.matter.add.sprite(135, 60, 'minivan').setOrigin(0,0).setScale(0.75);
+        var audi_body = this.matter.bodies.rectangle(230, 390, 100, 150);
+        
+        this.blackviper = this.matter.add.sprite(325, 300, 'blackviper').setScale(0.75);
+        var blackviper_body = this.matter.bodies.rectangle(420, 390, 70, 150);
+
+        this.taxi = this.matter.add.sprite(520, 350, 'taxi').setScale(0.75);
+        var taxi_body = this.matter.bodies.rectangle(510, 400, 70, 150);
+        
+        this.mvan = this.matter.add.sprite(135, 60, 'minivan').setScale(0.75);
+        var mvan_body = this.matter.bodies.rectangle(230, 160, 70, 150);
+
         //this.player = this.matter.add.sprite(620, 440, 'car').setOrigin(0,0).setScale(0.75);
 
         //add bush
@@ -33,7 +40,10 @@ class Play1 extends Phaser.Scene{
         this.gameOver = false;
 
         //car hitbox for collision
-        this.audi.setExistingBody(sprite_body);
+        this.audi.setExistingBody(audi_body);
+        this.blackviper.setExistingBody(blackviper_body);
+        this.taxi.setExistingBody(taxi_body);
+        this.mvan.setExistingBody(mvan_body);
         // this.blackviper.body.setSize(110, 216, true);
         // this.taxi.body.setSize(110, 216, true);
         // this.mvan.body.setSize(110, 216, true);
