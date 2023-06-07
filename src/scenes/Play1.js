@@ -9,28 +9,35 @@ class Play1 extends Phaser.Scene{
         this.load.image('taxi', './assets/taxi.png');
         this.load.image('minivan', './assets/Mini_van.png');
         this.load.image('car', './assets/Car.png');
+        this.load.image('bush', './assets/bush.png');
 
 
     }
 
     create(){
+        //set background color for scene 
         const cam1 = this.cameras.main.setViewport(0, 0, 760, 600).setBackgroundColor("#93969d");
         this.background = this.add.tileSprite(60, 60, 626, 416, 'parkinglot').setOrigin(0,0);
         //car positions
-        this.audi = this.physics.add.sprite(135, 290, 'audi').setOrigin(0,0).setScale(0.75);
-        this.blackviper = this.physics.add.sprite(325, 300, 'blackviper').setOrigin(0,0).setScale(0.75);
-        this.taxi = this.physics.add.sprite(420, 300, 'taxi').setOrigin(0,0).setScale(0.75);
-        this.mvan = this.physics.add.sprite(135, 60, 'minivan').setOrigin(0,0).setScale(0.75);
-        this.player = this.physics.add.sprite(620, 440, 'car').setOrigin(0,0).setScale(0.75);
+        this.audi = this.matter.add.sprite(135, 290, 'audi').setOrigin(0,0).setScale(0.75);
+        //this.blackviper = this.matter.add.sprite(325, 300, 'blackviper').setOrigin(0,0).setScale(0.75);
+        //this.taxi = this.matter.add.sprite(420, 300, 'taxi').setOrigin(0,0).setScale(0.75);
+        //this.mvan = this.matter.add.sprite(135, 60, 'minivan').setOrigin(0,0).setScale(0.75);
+        //this.player = this.matter.add.sprite(620, 440, 'car').setOrigin(0,0).setScale(0.75);
+
+        //add bush
+        this.bush = this.matter.add.sprite(120, 70, 'bush').setOrigin(0,0);
+
     
         this.gameOver = false;
 
         //car hitbox for collision
         this.audi.body.setSize(110, 216, true);
-        this.blackviper.body.setSize(110, 216, true);
-        this.taxi.body.setSize(110, 216, true);
-        this.mvan.body.setSize(110, 216, true);
-        this.player.body.setSize(110, 216, true);
+        // this.blackviper.body.setSize(110, 216, true);
+        // this.taxi.body.setSize(110, 216, true);
+        // this.mvan.body.setSize(110, 216, true);
+        // this.player.body.setSize(110, 216, true);
+        // this.bush.body.setSize(200, 50, true);
 
         //arrow key for control
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
@@ -70,10 +77,10 @@ class Play1 extends Phaser.Scene{
             this.player.y += 5;
         }
         
-        this.physics.add.overlap(this.player, this.audi, gameLost, null, this);
-        this.physics.add.overlap(this.player, this.blackviper, gameLost, null, this);
-        this.physics.add.overlap(this.player, this.taxi, gameLost, null, this);
-        this.physics.add.overlap(this.player, this.mvan, gameLost, null, this);
+        // this.matter.add.overlap(this.player, this.audi, gameLost, null, this);
+        // this.matter.add.overlap(this.player, this.blackviper, gameLost, null, this);
+        // this.matter.add.overlap(this.player, this.taxi, gameLost, null, this);
+        // this.matter.add.overlap(this.player, this.mvan, gameLost, null, this);
     }
 
     gameDone(){

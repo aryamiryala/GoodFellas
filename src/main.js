@@ -3,8 +3,8 @@ let config = {
     width: 760, 
     height: 600,
     physics: {
-        default: 'arcade',
-        arcade: {
+        default: 'matter',
+        matter: {
           gravity: { y: 0 },
           debug: true
         }
