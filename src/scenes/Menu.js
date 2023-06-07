@@ -4,16 +4,25 @@ class Menu extends Phaser.Scene{
     }
     preload(){
         this.load.image('background', './assets/background.png');
+        this.load.audio('sfx_background', './assets/background.mp3');
+
     }
     
     create(){
         this.background= this.add.tileSprite(60, 60, 640, 480, 'background').setOrigin(0,0);
-        //this.
+
+         //add music, set volume, play it
+         this.backgroundSong = this.sound.add('sfx_background', {volume: 0.5});   
+         this.backgroundSong.loop = true; 
+
+         this.backgroundSong.play();
+
+        
         let menuConfig = {
             fontFamily: 'Georgia', 
             fontSize: '28px', 
             backgroundColor: 'transparent',
-            color: 'blue',
+            color: 'white',
             align: 'right',
             padding: {
                 top: 5, 
@@ -42,7 +51,8 @@ class Menu extends Phaser.Scene{
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
            
             // this.sound.play('sfx_select');
-              this.scene.start("play1Scene");    
+              this.scene.start("playTitleScene");  
+              this.backgroundSong.destroy();  
         }
         if (Phaser.Input.Keyboard.JustDown(keyI)) {
            

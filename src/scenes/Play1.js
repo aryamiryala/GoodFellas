@@ -14,6 +14,11 @@ class Play1 extends Phaser.Scene{
         this.load.image('bush', './assets/bush.png');
         this.load.image('nothing', './assets/transparent.png');
 
+        //adding sound
+        this.load.audio('crash', './assets/crash.mp3');
+        this.load.audio('sfx_background', './assets/background.mp3');
+        // this.load.image('fence', './assets/fence.png');
+
 
     }
 
@@ -21,6 +26,15 @@ class Play1 extends Phaser.Scene{
         //set background color for scene 
         const cam1 = this.cameras.main.setViewport(0, 0, 760, 650).setBackgroundColor("#93969d");
         this.background = this.add.tileSprite(60, 110, 626, 416, 'parkinglot').setOrigin(0,0);
+
+        //add sound 
+        this.crashAudio = this.sound.add('crash', {volume: 0.5});   
+
+        this.backgroundSong = this.sound.add('sfx_background', {volume: 0.2});   
+        this.backgroundSong.loop = true; 
+
+        this.backgroundSong.play();
+
         //car positions (possibly make prefab if there is time for the bodies)
         this.audi = this.matter.add.sprite(230, 390, 'audi').setScale(0.75);
         this.audi2 = this.matter.add.sprite(230, 390, 'audi').setScale(0.75);
@@ -53,6 +67,10 @@ class Play1 extends Phaser.Scene{
         this.bush = this.matter.add.sprite(120, 70, 'bush').setScale(1.1);
         var bush_body = this.matter.bodies.rectangle(370, 325, 390, 70);
 
+        //adding fence
+        // this.fence = this.matter.add.sprite(120, 70, 'fence').setScale(0.25);
+        // var fence_body = this.matter.bodies.rectangle(50, 620, 40, 70);
+
         //set world bounds
         this.matter.world.setBounds(0, 0, 760, 650);
 
@@ -71,6 +89,7 @@ class Play1 extends Phaser.Scene{
         this.player.setExistingBody(player_body);
         this.bush.setExistingBody(bush_body);
         this.Win.setExistingBody(nothing_body);
+        //this.fence.setExistingBody(fence_body);
 
         //makes car harder to move
         this.player.setFrictionAir(0.08);
@@ -79,37 +98,57 @@ class Play1 extends Phaser.Scene{
         //makes bush stay still
         this.bush.setStatic(true);
 
+        //make cars stay still 
+        this.audi.setStatic(true);
+        this.audi2.setStatic(true);
+        this.blackviper.setStatic(true);
+        this.taxi.setStatic(true);
+        this.mvan.setStatic(true);
+        this.truck.setStatic(true);
+        this.minitruck.setStatic(true);
+        // this.fence.setStatic(true);
+
+
+
         //collide with any cars == game lost
         this.player.setOnCollideWith(this.audi, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
 
         this.player.setOnCollideWith(this.audi2, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
         
         this.player.setOnCollideWith(this.blackviper, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
 
         this.player.setOnCollideWith(this.taxi, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
 
         this.player.setOnCollideWith(this.mvan, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
 
         this.player.setOnCollideWith(this.truck, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
 
         this.player.setOnCollideWith(this.minitruck, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
 
         this.player.setOnCollideWith(this.bush, pair => {
             this.gameOver = true;
+            this.crashAudio.play(); 
         })
 
         //park fully inside parking spot = game win
@@ -156,6 +195,8 @@ class Play1 extends Phaser.Scene{
 
         if (this.gameOver == true && Phaser.Input.Keyboard.JustDown(keyM)){
             this.scene.start("menuScene");
+            this.backgroundSong.destroy();  
+
         }
 
         //If game is still on going
