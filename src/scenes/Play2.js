@@ -4,10 +4,15 @@ class Play2 extends Phaser.Scene{
     }
 
     preload(){
-        //this.load.path = './assets/'
+        this.load.path = './assets/'
+       
+        this.load.spritesheet('spider', 'spider.png', {
+            frameWidth: 60, 
+            frameHeight: 60
+        })
 
-        this.load.image('tilesetImage', './assets/bar_tileset.png');
-        this.load.tilemapTiledJSON('tilemapJSON', './assets/map.json');
+        this.load.image('tilesetImage', 'bar_tileset.png');
+        this.load.tilemapTiledJSON('tilemapJSON', 'map.json');
 
     }
     create(){
@@ -20,6 +25,17 @@ class Play2 extends Phaser.Scene{
         //add layers
         const bgLayer = map.createLayer('background', tileset, 0, 0)
         const terrainLayer = map.createLayer('terrain', tileset, 0, 0)
+
+        this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
+
+        this.anims.create({
+            key: 'forward', 
+            frameRate: 8, 
+            repeat: -1, 
+            frames: this.anims.generateFrameNumbers('spider', { start: 0, end: 4})
+        })
+
+        //this.spider.play("forward")
 
 
     }
