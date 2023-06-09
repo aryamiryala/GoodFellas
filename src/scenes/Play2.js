@@ -4,10 +4,10 @@ class Play2 extends Phaser.Scene{
     }
 
     preload(){
-        this.load.path = './assets/'
+        //this.load.path = './assets/'
 
-        this.load.image('tilesetImage', 'bar_tileset.png');
-        this.load.tilemapTiledJSON('tilemapJSON', 'map.json');
+        this.load.image('tilesetImage', './assets/bar_tileset.png');
+        this.load.tilemapTiledJSON('tilemapJSON', './assets/map.json');
 
     }
     create(){
