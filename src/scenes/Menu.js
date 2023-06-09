@@ -9,7 +9,7 @@ class Menu extends Phaser.Scene{
     }
     
     create(){
-        this.background= this.add.tileSprite(60, 60, 640, 480, 'background').setOrigin(0,0);
+        this.background= this.add.tileSprite(60, 50, 640, 480, 'background').setOrigin(0,0);
 
          //add music, set volume, play it
          this.backgroundSong = this.sound.add('sfx_background', {volume: 0.5});   
@@ -32,7 +32,7 @@ class Menu extends Phaser.Scene{
         };
        
 
-        this.add.text(game.config.width/2, game.config.height/1.9, 'Press I for instructions', menuConfig).setOrigin(0.5);
+        //this.add.text(game.config.width/2, game.config.height/1.9, 'Press I for instructions', menuConfig).setOrigin(0.5);
     
         this.add.text(game.config.width/2, game.config.height/1.2, 'Press -> to start game', menuConfig).setOrigin(0.5);
       
