@@ -63,6 +63,14 @@ class PlayTitle extends Phaser.Scene{
               this.backgroundSong.destroy();  
   
         }
+        if (Phaser.Input.Keyboard.JustDown(keyDOWN)) {
+           
+            // this.sound.play('sfx_select');
+              this.scene.start("play2Scene");    
+              this.backgroundSong.destroy();  
+
+        }
+
         if (Phaser.Input.Keyboard.JustDown(keyLEFT)) {
            
             // this.sound.play('sfx_select');

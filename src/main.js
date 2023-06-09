@@ -1,5 +1,8 @@
 let config = {
     type: Phaser.CANVAS, 
+    render: {
+      pixelArt: true
+    },
     width: 760, 
     height: 650,
     physics: {
@@ -9,9 +12,9 @@ let config = {
           debug: true
         }
 
-    },
+    }, 
     //backgroundColor: "#000000",
-    scene: [Menu, PlayTitle, Play1Title, Play1]
+    scene: [Menu, PlayTitle, Play1Title, Play1, Play2]
 }
 
 let game = new Phaser.Game(config);
