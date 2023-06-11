@@ -8,7 +8,7 @@ class Play2 extends Phaser.Scene{
        
         this.load.spritesheet('spider', 'spider.png', {
             frameWidth: 40, 
-            frameHeight: 40, 
+            frameHeight: 40,
             margin: 20
         })
 
