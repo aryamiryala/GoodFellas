@@ -7,8 +7,9 @@ class Play2 extends Phaser.Scene{
         this.load.path = './assets/'
        
         this.load.spritesheet('spider', 'spider.png', {
-            frameWidth: 60, 
-            frameHeight: 60
+            frameWidth: 40, 
+            frameHeight: 40,
+            margin: 20
         })
 
         this.load.image('tilesetImage', 'bar_tileset.png');
