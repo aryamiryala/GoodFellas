@@ -1,3 +1,9 @@
+// Arya Miryala
+// Brennen Tsang
+// Arcade Physics and Matter Physics used
+// Camera, tilemap, and timer used in second scene
+
+// Beer Bottle: <a href='https://pngtree.com/so/Pixel'>Pixel png from pngtree.com/</a>
 let config = {
     type: Phaser.CANVAS, 
     render: {

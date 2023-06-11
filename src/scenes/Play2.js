@@ -21,8 +21,13 @@ class Play2 extends Phaser.Scene{
             margin: 20
         })
 
+        this.load.image('tommy', 'tommy.png')
+
+        
+
         this.load.image('tilesetImage', 'bar_tileset.png');
         this.load.tilemapTiledJSON('tilemapJSON', 'map.json');
+        this.load.image('beer', 'Beer_Bottle.png');
 
     }
     create(){
@@ -35,8 +40,14 @@ class Play2 extends Phaser.Scene{
         //add layers
         const bgLayer = map.createLayer('background', tileset, 0, 0)
         const terrainLayer = map.createLayer('terrain', tileset, 0, 0)
+        const drinkLayer = map.createLayer('drink', tileset, 0, 0)
 
         this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
+        //this.tommy = this.physics.add.sprite(202, 202, 'tommy', 0, 0).setScale(0.20)
+
+        this.bottle = this.physics.add.sprite(-100, -100, 'beer').setScale(0.1);
+        this.drink = false;
+
 
         //animation for spider
         this.anims.create({
@@ -86,6 +97,9 @@ class Play2 extends Phaser.Scene{
         //enable collision 
         terrainLayer.setCollisionByProperty({ collides: true })
         this.physics.add.collider(this.spider, terrainLayer);
+
+        drinkLayer.setCollisionByProperty({ collides: true })
+        this.physics.add.collider(this.spider, drinkLayer, PickUpDrink());
 
 
         //cameras
@@ -159,5 +173,16 @@ class Play2 extends Phaser.Scene{
         this.direction.normalize()
         this.spider.setVelocity(this.VEL * this.direction.x, this.VEL * this.direction.y)
 
+        if (this.drink == true){
+            this.bottle.x = this.spider.x + 40
+            this.bottle.y = this.spider.y + 42
+        }
+
     }
+}
+
+function PickUpDrink(spider, drinkL){
+    this.drink = true
+    this.bottle.x = spider.x + 40
+    this.bottle.y = spider.y + 42
 }
