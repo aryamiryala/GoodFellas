@@ -83,11 +83,17 @@ class Play2 extends Phaser.Scene{
         //set world collision
         this.spider.body.setCollideWorldBounds(true)
 
+        //enable collision 
+        terrainLayer.setCollisionByProperty({ collides: true })
+        this.physics.add.collider(this.spider, terrainLayer);
+
+
         //cameras
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
         this.cameras.main.setZoom(2);
 
         this.cameras.main.startFollow(this.spider, true, 0.25, 0.25);
+        this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels)
 
         //keys for control
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
