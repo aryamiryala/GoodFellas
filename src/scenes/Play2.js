@@ -33,7 +33,28 @@ class Play2 extends Phaser.Scene{
             key: 'forward', 
             frameRate: 8, 
             repeat: -1, 
-            frames: this.anims.generateFrameNumbers('spider', { start: 0, end: 4})
+            frames: this.anims.generateFrameNumbers('spider', { start: 0, end: 3})
+        })
+
+        this.anims.create({
+            key: 'right', 
+            frameRate: 8, 
+            repeat: -1, 
+            frames: this.anims.generateFrameNumbers('spider', { start: 4, end: 7})
+        })
+
+        this.anims.create({
+            key: 'left', 
+            frameRate: 8, 
+            repeat: -1, 
+            frames: this.anims.generateFrameNumbers('spider', { start: 8, end: 11})
+        })
+
+        this.anims.create({
+            key: 'left', 
+            frameRate: 8, 
+            repeat: -1, 
+            frames: this.anims.generateFrameNumbers('spider', { start: 12, end: 15})
         })
 
         this.spider.play("forward")
