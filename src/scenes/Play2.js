@@ -42,8 +42,21 @@ class Play2 extends Phaser.Scene{
         const terrainLayer = map.createLayer('terrain', tileset, 0, 0)
         const drinkLayer = map.createLayer('drink', tileset, 0, 0)
 
+        //get different spawn locations for tommy
+        const tommySpawn1 = map.findObject('spawn1', obj => obj.name === 'tommySpawn1')
+        const tommySpawn2 = map.findObject('spawn2', obj => obj.name === 'tommySpawn2')
+        const tommySpawn3 = map.findObject('spawn3', obj => obj.name === 'tommySpawn3')
+        const tommySpawn4 = map.findObject('spawn4', obj => obj.name === 'tommySpawn4')
+        const tommySpawn5 = map.findObject('spawn5', obj => obj.name === 'tommySpawn5')
+        const tommySpawn6 = map.findObject('spawn6', obj => obj.name === 'tommySpawn6')
+
+        //put all possible spawns in an array 
+        const tommySpawn = [tommySpawn1, tommySpawn2, tommySpawn3, tommySpawn4, tommySpawn5, tommySpawn6]
+        //randomize spawn location 
+        const randomSpawn = tommySpawn[Math.floor(Math.random()*tommySpawn.length)];
+
         this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
-        //this.tommy = this.physics.add.sprite(202, 202, 'tommy', 0, 0).setScale(0.20)
+        this.tommy = this.physics.add.sprite(randomSpawn.x, randomSpawn.y, 'tommy', 0, 0).setScale(0.20)
 
         this.bottle = this.physics.add.sprite(-100, -100, 'beer').setScale(0.1);
         this.drink = false;
@@ -99,12 +112,12 @@ class Play2 extends Phaser.Scene{
         this.physics.add.collider(this.spider, terrainLayer);
 
         drinkLayer.setCollisionByProperty({ collides: true })
-        this.physics.add.collider(this.spider, drinkLayer, PickUpDrink());
+        //this.physics.add.collider(this.spider, drinkLayer, PickUpDrink());
 
 
         //cameras
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        this.cameras.main.setZoom(2);
+        //this.cameras.main.setZoom(2);
 
         this.cameras.main.startFollow(this.spider, true, 0.25, 0.25);
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels)
@@ -181,8 +194,8 @@ class Play2 extends Phaser.Scene{
     }
 }
 
-function PickUpDrink(spider, drinkL){
-    this.drink = true
-    this.bottle.x = spider.x + 40
-    this.bottle.y = spider.y + 42
-}
+// function PickUpDrink(spider, drinkL){
+//     this.drink = true
+//     this.bottle.x = spider.x + 40
+//     this.bottle.y = spider.y + 42
+// }
