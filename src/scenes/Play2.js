@@ -8,7 +8,7 @@ class Play2 extends Phaser.Scene{
        
         this.load.spritesheet('spider', 'spider.png', {
             frameWidth: 40, 
-            frameHeight: 40,
+            frameHeight: 43,
             margin: 20
         })
 
@@ -29,6 +29,7 @@ class Play2 extends Phaser.Scene{
 
         this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
 
+        //animation for spider
         this.anims.create({
             key: 'forward', 
             frameRate: 8, 
@@ -51,13 +52,13 @@ class Play2 extends Phaser.Scene{
         })
 
         this.anims.create({
-            key: 'left', 
+            key: 'backward', 
             frameRate: 8, 
             repeat: -1, 
             frames: this.anims.generateFrameNumbers('spider', { start: 12, end: 15})
         })
 
-        this.spider.play("forward")
+        this.spider.play("backward")
 
 
     }
