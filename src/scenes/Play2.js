@@ -67,16 +67,17 @@ class Play2 extends Phaser.Scene{
             frames: this.anims.generateFrameNumbers('spider', { start: 12, end: 15})
         })
 
-        this.spider.play("forward")
+        //this.spider.play("forward")
         
         
         //set world collision
         this.spider.body.setCollideWorldBounds(true)
 
         //cameras
-        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+        this.cameras.main.setZoom(3.5);
 
-        this.cameras.main.startFollow(this.spider, true, 0.25, 0.25)
+        this.cameras.main.startFollow(this.spider, true, 0.25, 0.25);
 
         //keys for control
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
