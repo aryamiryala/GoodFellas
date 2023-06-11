@@ -55,6 +55,7 @@ class Play2 extends Phaser.Scene{
         //randomize spawn location 
         const randomSpawn = tommySpawn[Math.floor(Math.random()*tommySpawn.length)];
 
+        //add sprites 
         this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
         this.tommy = this.physics.add.sprite(randomSpawn.x, randomSpawn.y, 'tommy', 0, 0).setScale(0.20)
 
@@ -117,7 +118,7 @@ class Play2 extends Phaser.Scene{
 
         //cameras
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        //this.cameras.main.setZoom(2);
+        this.cameras.main.setZoom(2);
 
         this.cameras.main.startFollow(this.spider, true, 0.25, 0.25);
         this.physics.world.bounds.setTo(0, 0, map.widthInPixels, map.heightInPixels)

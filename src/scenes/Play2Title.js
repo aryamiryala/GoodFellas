@@ -1,6 +1,6 @@
-class Play1Title extends Phaser.Scene{
+class Play2Title extends Phaser.Scene{
     constructor(){
-        super("play1TitleScene");
+        super("play2TitleScene");
     }
     preload(){
         this.load.image('title', './assets/title.png');
@@ -32,7 +32,7 @@ class Play1Title extends Phaser.Scene{
 
         let mssgConfig = {
             fontFamily: 'Georgia', 
-            fontSize: '20px', 
+            fontSize: '18px', 
             backgroundColor: 'transparent',
             color: '#A4DFF3',
             align: 'center',
@@ -44,12 +44,10 @@ class Play1Title extends Phaser.Scene{
         };
 
         const mssg = `
-        This scene depicts of Henry as a child parking people's cadillacs. 
-        Your objective in this scene is to try and park the car in the open parking space. 
-        Because Henry was a kid in this scene and doesn't know how to drive properly 
-        it will be harder in this game to manuever the car.
-        If bumped into another car or the border of the screen, you automatically lose. 
-        IMPORTANT! ! ! : Use W, A, S, D to move the car. 
+        This scene depicts of Spider, a waiter delivering drinks to the mafia. 
+        Your objective in this scene is to try and deliver drinks to Tommy before the time runs out. 
+        Get the drink from the drink bar and deliver it to Tommy before time runs out.
+        IMPORTANT! ! ! : Use the W, A, S, D to move around as Spider. 
         Good Luck!!! 
         `;
 
@@ -73,7 +71,7 @@ class Play1Title extends Phaser.Scene{
         if (Phaser.Input.Keyboard.JustDown(keyRIGHT)) {
            
            
-              this.scene.start("play1Scene");    
+              this.scene.start("play2Scene");    
               this.backgroundSong.destroy();  
 
         }
