@@ -1,6 +1,15 @@
 class Play2 extends Phaser.Scene{
     constructor(){
-        super("play2Scene");
+        super({
+            key: "play2Scene",
+            physics: {
+                arcade: {
+                    debug: true
+                }
+            }
+        });
+
+        this.VEL = 100
     }
 
     preload(){
@@ -58,11 +67,50 @@ class Play2 extends Phaser.Scene{
             frames: this.anims.generateFrameNumbers('spider', { start: 12, end: 15})
         })
 
-        this.spider.play("backward")
+        this.spider.play("forward")
+        
+        
+        //set world collision
+        this.spider.body.setCollideWorldBounds(true)
+
+        //cameras
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+
+        this.cameras.main.startFollow(this.spider, true, 0.25, 0.25)
+
+        //keys for control
+        keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
+        keyM = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
 
 
     }
     update(){
+        this.direction = new Phaser.Math.Vector2(0)
+
+        if(keyLEFT.isDown){
+            this.direction.x = -1
+            this.spider.play("left")
+
+        }
+        else if(keyRIGHT.isDown){
+            this.direction.x = 1
+            this.spider.play("right")
+        }
+        if(keyUP.isDown){
+            this.direction.y = -1
+            this.spider.play("backward")
+
+        }
+        else if(keyDOWN.isDown){
+            this.direction.y = 1
+            this.spider.play("forward")
+        }
+        this.direction.normalize()
+        this.spider.setVelocity(this.VEL * this.direction.x, this.VEL * this.direction.y)
 
     }
 }

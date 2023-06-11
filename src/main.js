@@ -13,12 +13,12 @@ let config = {
         }
 
     }, 
-    physics: {
-      default: "arcade",
-      arcade: {
-          debug: true
-      }
-  },
+  //   physics: {
+  //     default: "arcade",
+  //     arcade: {
+  //         debug: true
+  //     }
+  // },
     //backgroundColor: "#000000",
     scene: [Menu, PlayTitle, Play1Title, Play1, Play2]
 }
