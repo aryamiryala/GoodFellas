@@ -77,14 +77,15 @@ class Play2 extends Phaser.Scene{
             frames: this.anims.generateFrameNumbers('spider', { start: 0, end: 0})
         })
 
-        this.spider.play("forward")
+        this.spider.play("idle")
         
         
         //set world collision
         this.spider.body.setCollideWorldBounds(true)
 
         //cameras
-        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels)
+        this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
+        this.cameras.main.setZoom(2);
 
         this.cameras.main.startFollow(this.spider, true, 0.25, 0.25);
 
