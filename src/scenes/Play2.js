@@ -64,6 +64,9 @@ class Play2 extends Phaser.Scene{
         this.empty.body.setSize(970, 350, true);
         this.spawndrink = false;
 
+        // overlap between player and drink cabinet
+        this.physics.add.overlap(this.spider, this.empty, this.DrinkPickUp, null, this);
+
 
         //animation for spider
         this.anims.create({
@@ -193,8 +196,15 @@ class Play2 extends Phaser.Scene{
         // Bottle follows above the player once they collect the drink
         if (this.spawndrink == true){
             this.bottle.x = this.spider.x
-            this.bottle.y = this.spider.y - 42
+            this.bottle.y = this.spider.y - 32
         }
 
+    }
+
+    DrinkPickUp(){
+        if (this.spawndrink == false){
+            this.bottle = this.physics.add.sprite(this.spider.x, this.spider.y - 42, 'beer').setScale(0.1);
+            this.spawndrink = true;
+        }
     }
 }
