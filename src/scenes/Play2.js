@@ -269,13 +269,13 @@ class Play2 extends Phaser.Scene{
 
         
         if(this.clock == 0 && this.gameOver == false){
+            this.cameras.main.setZoom(1);
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', textConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 32, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
             this.gameOver = true;
 
         }
         else if (this.clock > 0){
-            console.log(this.clock);
             this.clock--;
         }
         
