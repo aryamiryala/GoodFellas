@@ -59,8 +59,9 @@ class Play2 extends Phaser.Scene{
         this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
         this.tommy = this.physics.add.sprite(randomSpawn.x, randomSpawn.y, 'tommy', 0, 0).setScale(0.20)
 
-        this.bottle = this.physics.add.sprite(-100, -100, 'beer').setScale(0.1);
-        this.drink = false;
+        this.bottle = this.physics.add.sprite(300, 50, 'beer').setScale(0.1);
+        this.bottle.body.setSize(100, 10, true);
+        this.spawndrink = false;
 
 
         //animation for spider
@@ -113,7 +114,7 @@ class Play2 extends Phaser.Scene{
         this.physics.add.collider(this.spider, terrainLayer);
 
         drinkLayer.setCollisionByProperty({ collides: true })
-        //this.physics.add.collider(this.spider, drinkLayer, PickUpDrink());
+        this.physics.add.collider(this.spider, drinkLayer);
 
 
         //cameras
@@ -134,6 +135,7 @@ class Play2 extends Phaser.Scene{
 
     }
     update(){
+        //Player movement
         this.direction = new Phaser.Math.Vector2(0)
 
         if(keyLEFT.isDown){
@@ -187,16 +189,11 @@ class Play2 extends Phaser.Scene{
         this.direction.normalize()
         this.spider.setVelocity(this.VEL * this.direction.x, this.VEL * this.direction.y)
 
-        if (this.drink == true){
-            this.bottle.x = this.spider.x + 40
-            this.bottle.y = this.spider.y + 42
+        // Bottle follows above the player once they collect the drink
+        if (this.spawndrink == true){
+            this.bottle.x = this.spider.x
+            this.bottle.y = this.spider.y - 42
         }
 
     }
 }
-
-// function PickUpDrink(spider, drinkL){
-//     this.drink = true
-//     this.bottle.x = spider.x + 40
-//     this.bottle.y = spider.y + 42
-// }
