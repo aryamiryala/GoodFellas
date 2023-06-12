@@ -64,17 +64,17 @@ class Play1 extends Phaser.Scene{
         var nothing_body = this.matter.bodies.rectangle(325, 360, 100, 5);
 
         //Used for world borders
-        this.fenceTop = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
-        var fenceTop_body = this.matter.bodies.rectangle(380, 0, 760, 1);
+        // this.fenceTop = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        // var fenceTop_body = this.matter.bodies.rectangle(380, 0, 760, 1);
 
-        this.fenceBot = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
-        var fenceBot_body = this.matter.bodies.rectangle(380, 650, 760, 1);
+        // this.fenceBot = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        // var fenceBot_body = this.matter.bodies.rectangle(380, 650, 760, 1);
 
-        this.fenceLeft = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
-        var fenceLeft_body = this.matter.bodies.rectangle(0, 325, 1, 650);
+        // this.fenceLeft = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        // var fenceLeft_body = this.matter.bodies.rectangle(0, 325, 1, 650);
 
-        this.fenceRight = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
-        var fenceRight_body = this.matter.bodies.rectangle(760, 325, 1, 650);
+        // this.fenceRight = this.matter.add.sprite(325, 370, 'nothing').setScale(0.1);
+        // var fenceRight_body = this.matter.bodies.rectangle(760, 325, 1, 650);
         
         //add bush
         this.bush = this.matter.add.sprite(120, 70, 'bush').setScale(1.1);
@@ -102,10 +102,10 @@ class Play1 extends Phaser.Scene{
         this.Win.setExistingBody(nothing_body);
 
         //fences on borders
-        this.fenceTop.setExistingBody(fenceTop_body);
-        this.fenceBot.setExistingBody(fenceBot_body);
-        this.fenceLeft.setExistingBody(fenceLeft_body);
-        this.fenceRight.setExistingBody(fenceRight_body);
+        // this.fenceTop.setExistingBody(fenceTop_body);
+        // this.fenceBot.setExistingBody(fenceBot_body);
+        // this.fenceLeft.setExistingBody(fenceLeft_body);
+        // this.fenceRight.setExistingBody(fenceRight_body);
 
         //makes car harder to move
         this.player.setFrictionAir(0.08);

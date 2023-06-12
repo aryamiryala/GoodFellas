@@ -32,6 +32,10 @@ class Play2 extends Phaser.Scene{
 
     }
     create(){
+
+        this.clock = 3000/100; 
+
+        this.gameOver = false; 
     
 
 
@@ -56,9 +60,38 @@ class Play2 extends Phaser.Scene{
         //randomize spawn location 
         const randomSpawn = tommySpawn[Math.floor(Math.random()*tommySpawn.length)];
 
+        //Timer
+        this.timeText = this.add.text(10, 10, 'Time: ', {
+            fontSize: '20px',
+            fill: '#ffffff',
+            fontFamily: '"Georgia"',
+            strokeThickness: 10,
+            stroke: 'black',
+        });
+  
+        let timeConfig = {
+            fontSize: '20px',
+            fill: '#ffffff',
+            fontFamily: '"Georgia"',
+            strokeThickness: 5,
+            stroke: 'black',
+  
+        };
+
+        this.timer = this.time.addEvent({delay: 1000, callback: this.updateTimer, callbackScope: this, loop: true });
+        this.timeValue = this.add.text(70, 10, this.clock, timeConfig);
+
+
+
+        
+        //stops generating the gameover or game won text
+        this.stop = false;
+        
         //add sprites 
         this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
+        this.spider.body.setSize(30, 40, true);
         this.tommy = this.physics.add.sprite(randomSpawn.x, randomSpawn.y, 'tommy', 0, 0).setScale(0.20)
+
 
         this.empty = this.physics.add.sprite(350, 30, 'nothingness').setScale(0.2);
         this.empty.body.setSize(970, 350, true);
@@ -120,6 +153,7 @@ class Play2 extends Phaser.Scene{
         drinkLayer.setCollisionByProperty({ collides: true })
         this.physics.add.collider(this.spider, drinkLayer);
 
+        
 
         //cameras
         this.cameras.main.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
@@ -139,66 +173,128 @@ class Play2 extends Phaser.Scene{
 
     }
     update(){
+
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)){
+            this.scene.restart(); 
+        }
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyM)){
+            this.scene.start("menuScene");
+        }
         //Player movement
         this.direction = new Phaser.Math.Vector2(0)
 
-        if(keyLEFT.isDown){
-            this.direction.x = -1
-            if (this.left == false && keyUP.isUp && keyDOWN.isUp){
-                this.spider.play("left")
-                this.left = true;
+        if(this.gameOver == false){
+
+            console.log(this.gameOver);
+            this.timeValue.text = this.clock; 
+
+            // Bottle follows above the player once they collect the drink
+            if (this.spawndrink == true){
+                this.bottle.x = this.spider.x + 10
+                this.bottle.y = this.spider.y
+                if (this.stop == false){
+                    this.physics.add.overlap(this.spider, this.tommy, this.gameWonScreen, null, this);
+                }
+            }
+            
+            if(keyLEFT.isDown){
+                this.direction.x = -1
+                if (this.left == false && keyUP.isUp && keyDOWN.isUp){
+                    this.spider.play("left")
+                    this.left = true;
+                    this.right = false;
+                    this.forward = false;
+                    this.backward = false;
+                }
+            }
+            else if(keyRIGHT.isDown){
+                this.direction.x = 1
+                if (this.right == false && keyUP.isUp && keyDOWN.isUp){
+                    this.spider.play("right")
+                    this.left = false;
+                    this.right = true;
+                    this.forward = false;
+                    this.backward = false;
+                }
+            }
+            if(keyUP.isDown){
+                this.direction.y = -1
+                if (this.backward == false){
+                    this.spider.play("backward")
+                    this.left = false;
+                    this.right = false;
+                    this.forward = false;
+                    this.backward = true;
+                }
+            }
+            else if(keyDOWN.isDown){
+                this.direction.y = 1
+                if (this.forward == false){
+                    this.spider.play("forward")
+                    this.left = false;
+                    this.right = false;
+                    this.forward = true;
+                    this.backward = false;
+                }
+            }
+    
+            if (keyDOWN.isUp && keyUP.isUp && keyRIGHT.isUp && keyLEFT.isUp){
+                this.spider.stop();
+                this.left = false;
                 this.right = false;
                 this.forward = false;
                 this.backward = false;
             }
+            this.direction.normalize()
+            this.spider.setVelocity(this.VEL * this.direction.x, this.VEL * this.direction.y)
+            this.timeText.x = this.spider.body.position.x - 35
+            this.timeText.y = this.spider.body.position.y - 25
+            this.timeValue.x = this.spider.body.position.x + 25
+            this.timeValue.y = this.spider.body.position.y - 25
         }
-        else if(keyRIGHT.isDown){
-            this.direction.x = 1
-            if (this.right == false && keyUP.isUp && keyDOWN.isUp){
-                this.spider.play("right")
-                this.left = false;
-                this.right = true;
-                this.forward = false;
-                this.backward = false;
-            }
-        }
-        if(keyUP.isDown){
-            this.direction.y = -1
-            if (this.backward == false){
-                this.spider.play("backward")
-                this.left = false;
-                this.right = false;
-                this.forward = false;
-                this.backward = true;
-            }
-        }
-        else if(keyDOWN.isDown){
-            this.direction.y = 1
-            if (this.forward == false){
-                this.spider.play("forward")
-                this.left = false;
-                this.right = false;
-                this.forward = true;
-                this.backward = false;
-            }
+        else{
+            this.spider.setVelocity(0, 0)
         }
 
-        if (keyDOWN.isUp && keyUP.isUp && keyRIGHT.isUp && keyLEFT.isUp){
-            this.spider.stop();
-            this.left = false;
-            this.right = false;
-            this.forward = false;
-            this.backward = false;
-        }
-        this.direction.normalize()
-        this.spider.setVelocity(this.VEL * this.direction.x, this.VEL * this.direction.y)
+        
+    }
+    updateTimer(){
+        let textConfig = {
+            fontSize: '20px',
+            fill: '#ffffff',
+            fontFamily: '"Georgia"',
+            strokeThickness: 5,
+            stroke: 'black',
+    
+        };
 
-        // Bottle follows above the player once they collect the drink
-        if (this.spawndrink == true){
-            this.bottle.x = this.spider.x
-            this.bottle.y = this.spider.y - 32
-        }
+        this.clock--; 
+        
+        if(this.clock == 0){
+            this.add.text(this.spider.x, this.spider.y, 'GAME OVER', textConfig).setOrigin(0.5);
+            this.add.text(this.spider.x, this.spider.y + 32, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+            this.gameOver = true;
 
+        }
+        
+
+
+    }
+    gameWonScreen(){
+        let textConfig = {
+            fontSize: '20px',
+            fill: '#ffffff',
+            fontFamily: '"Georgia"',
+            strokeThickness: 5,
+            stroke: 'black',
+    
+        };
+
+        this.stop = true;
+        this.gameOver = true;
+        this.add.text(this.spider.x, this.spider.y, 'GOOD JOB SPIDER', textConfig).setOrigin(0.5);
+        this.add.text(this.spider.x, this.spider.y + 32, 'You live this time...', textConfig).setOrigin(0.5);
+        this.add.text(this.spider.x, this.spider.y + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
     }
 
     DrinkPickUp(){
