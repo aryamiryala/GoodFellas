@@ -122,10 +122,10 @@ class Play1 extends Phaser.Scene{
         // this.mvan.setStatic(true);
         // this.truck.setStatic(true);
         // this.minitruck.setStatic(true);
-        this.fenceTop.setStatic(true);
-        this.fenceBot.setStatic(true);
-        this.fenceLeft.setStatic(true);
-        this.fenceRight.setStatic(true);
+        // this.fenceTop.setStatic(true);
+        // this.fenceBot.setStatic(true);
+        // this.fenceLeft.setStatic(true);
+        // this.fenceRight.setStatic(true);
 
 
 
@@ -171,25 +171,25 @@ class Play1 extends Phaser.Scene{
         })
 
         //collide with fences = game lost
-        this.player.setOnCollideWith(this.fenceTop, pair => {
-            this.gameOver = true;
-            this.crashAudio.play(); 
-        })
+        // this.player.setOnCollideWith(this.fenceTop, pair => {
+        //     this.gameOver = true;
+        //     this.crashAudio.play(); 
+        // })
 
-        this.player.setOnCollideWith(this.fenceBot, pair => {
-            this.gameOver = true;
-            this.crashAudio.play(); 
-        })
+        // this.player.setOnCollideWith(this.fenceBot, pair => {
+        //     this.gameOver = true;
+        //     this.crashAudio.play(); 
+        // })
 
-        this.player.setOnCollideWith(this.fenceLeft, pair => {
-            this.gameOver = true;
-            this.crashAudio.play(); 
-        })
+        // this.player.setOnCollideWith(this.fenceLeft, pair => {
+        //     this.gameOver = true;
+        //     this.crashAudio.play(); 
+        // })
 
-        this.player.setOnCollideWith(this.fenceRight, pair => {
-            this.gameOver = true;
-            this.crashAudio.play(); 
-        })
+        // this.player.setOnCollideWith(this.fenceRight, pair => {
+        //     this.gameOver = true;
+        //     this.crashAudio.play(); 
+        // })
 
         //park fully inside parking spot = game win
         this.player.setOnCollideWith(this.Win, pair => {
