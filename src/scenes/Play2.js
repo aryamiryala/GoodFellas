@@ -184,7 +184,6 @@ class Play2 extends Phaser.Scene{
         this.direction = new Phaser.Math.Vector2(0)
 
         if (this.stop == false && this.gameOver == false){
-            console.log(this.gameOver);
             this.physics.add.overlap(this.spider, this.tommy, this.gameWonScreen, null, this);
         }
 
@@ -271,8 +270,8 @@ class Play2 extends Phaser.Scene{
         this.clock--; 
         
         if(this.clock == 0){
-            this.add.text(this.spider.x, this.spider.y, 'GAME OVER', textConfig).setOrigin(0.5);
-            this.add.text(this.spider.x, this.spider.y + 32, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 32, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
             this.gameOver = true;
 
         }
@@ -282,6 +281,7 @@ class Play2 extends Phaser.Scene{
     }
     gameWonScreen(){
         if (this.gameOver == false){
+            this.cameras.main.setZoom(1);
             let textConfig = {
                 fontSize: '20px',
                 fill: '#ffffff',
@@ -293,10 +293,9 @@ class Play2 extends Phaser.Scene{
     
             this.stop = true;
             this.gameOver = true;
-            console.log(this.stop);
-            this.add.text(this.spider.x, this.spider.y, 'GOOD JOB SPIDER', textConfig).setOrigin(0.5);
-            this.add.text(this.spider.x, this.spider.y + 32, 'You live this time...', textConfig).setOrigin(0.5);
-            this.add.text(this.spider.x, this.spider.y + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2, 'GOOD JOB SPIDER', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 32, 'You live this time...', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
         }
     }
 
