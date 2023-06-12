@@ -9,7 +9,7 @@ class Play3 extends Phaser.Scene{
             }
         });
 
-        this.VEL = 100
+        this.VEL = 65
     }
 
     preload(){
@@ -207,7 +207,7 @@ class Play3 extends Phaser.Scene{
             }
             
             if(keyLEFT.isDown){
-                this.direction.x = -0.20
+                this.direction.x = -1
                 if (this.left == false && keyUP.isUp && keyDOWN.isUp){
                     this.spider.play("left")
                     this.left = true;
@@ -217,7 +217,7 @@ class Play3 extends Phaser.Scene{
                 }
             }
             else if(keyRIGHT.isDown){
-                this.direction.x = 0.20
+                this.direction.x = 1
                 if (this.right == false && keyUP.isUp && keyDOWN.isUp){
                     this.spider.play("right")
                     this.left = false;
@@ -227,7 +227,7 @@ class Play3 extends Phaser.Scene{
                 }
             }
             if(keyUP.isDown){
-                this.direction.y = -0.20
+                this.direction.y = -1
                 if (this.backward == false){
                     this.spider.play("backward")
                     this.left = false;
@@ -237,7 +237,7 @@ class Play3 extends Phaser.Scene{
                 }
             }
             else if(keyDOWN.isDown){
-                this.direction.y = 0.20
+                this.direction.y = 1
                 if (this.forward == false){
                     this.spider.play("forward")
                     this.left = false;
