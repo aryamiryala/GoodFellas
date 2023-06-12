@@ -183,18 +183,18 @@ class Play2 extends Phaser.Scene{
         //Player movement
         this.direction = new Phaser.Math.Vector2(0)
 
-        if(this.gameOver == false){
-
+        if (this.stop == false && this.gameOver == false){
             console.log(this.gameOver);
+            this.physics.add.overlap(this.spider, this.tommy, this.gameWonScreen, null, this);
+        }
+
+        if(this.gameOver == false){
             this.timeValue.text = this.clock; 
 
             // Bottle follows above the player once they collect the drink
             if (this.spawndrink == true){
                 this.bottle.x = this.spider.x + 10
                 this.bottle.y = this.spider.y
-                if (this.stop == false){
-                    this.physics.add.overlap(this.spider, this.tommy, this.gameWonScreen, null, this);
-                }
             }
             
             if(keyLEFT.isDown){
@@ -281,20 +281,23 @@ class Play2 extends Phaser.Scene{
 
     }
     gameWonScreen(){
-        let textConfig = {
-            fontSize: '20px',
-            fill: '#ffffff',
-            fontFamily: '"Georgia"',
-            strokeThickness: 5,
-            stroke: 'black',
+        if (this.gameOver == false){
+            let textConfig = {
+                fontSize: '20px',
+                fill: '#ffffff',
+                fontFamily: '"Georgia"',
+                strokeThickness: 5,
+                stroke: 'black',
+        
+            };
     
-        };
-
-        this.stop = true;
-        this.gameOver = true;
-        this.add.text(this.spider.x, this.spider.y, 'GOOD JOB SPIDER', textConfig).setOrigin(0.5);
-        this.add.text(this.spider.x, this.spider.y + 32, 'You live this time...', textConfig).setOrigin(0.5);
-        this.add.text(this.spider.x, this.spider.y + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+            this.stop = true;
+            this.gameOver = true;
+            console.log(this.stop);
+            this.add.text(this.spider.x, this.spider.y, 'GOOD JOB SPIDER', textConfig).setOrigin(0.5);
+            this.add.text(this.spider.x, this.spider.y + 32, 'You live this time...', textConfig).setOrigin(0.5);
+            this.add.text(this.spider.x, this.spider.y + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+        }
     }
 
     DrinkPickUp(){
