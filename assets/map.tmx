@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="48" height="41" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="6">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="48" height="41" tilewidth="16" tileheight="16" infinite="0" nextlayerid="10" nextobjectid="21">
  <editorsettings>
   <export target="map.json" format="json"/>
  </editorsettings>
@@ -1984,7 +1984,7 @@
 0,0,283,284,0,0,0,0,0,0,0,0,126,0,0,0,0,0,0,0,0,0,0,0,0,0,126,0,0,0,0,0,0,0,0,0,0,189,190,191,192,0,0,0,0,0,319,320,
 0,0,227,228,0,0,0,0,0,0,0,0,126,0,0,0,0,0,0,141,142,143,144,0,0,0,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 313,314,243,244,0,0,0,0,0,0,0,0,126,0,0,0,0,169,170,157,158,159,160,0,0,0,126,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-329,330,331,332,0,0,0,0,0,0,0,0,0,0,0,0,0,185,186,173,174,175,176,169,170,0,0,126,0,0,0,0,0,0,0,0,0,0,0,0,126,126,126,126,0,0,0,0,
+329,330,331,332,0,0,0,0,0,0,0,0,0,0,0,0,0,185,186,173,174,175,176,169,170,0,0,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 345,346,347,348,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,189,190,191,192,185,186,0,0,0,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,126,126,126,126,126,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,169,170,0,0,0,0,0,0,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,271,272,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,185,186,0,0,0,0,0,0,126,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,287,288,
@@ -2061,20 +2061,33 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="spawns">
-  <object id="1" x="545.205" y="586.301">
+ <objectgroup id="4" name="spawn1">
+  <object id="14" name="tommySpawn1" x="445.205" y="520.548">
    <point/>
   </object>
-  <object id="2" x="639.726" y="420.548">
+ </objectgroup>
+ <objectgroup id="5" name="spawn2">
+  <object id="15" name="tommySpawn2" x="45.2055" y="454.795">
    <point/>
   </object>
-  <object id="3" x="45.2055" y="456.164">
+ </objectgroup>
+ <objectgroup id="6" name="spawn3">
+  <object id="16" name="tommySpawn3" x="719.178" y="423.288">
    <point/>
   </object>
-  <object id="4" x="702.74" y="291.781">
+ </objectgroup>
+ <objectgroup id="7" name="spawn4">
+  <object id="18" name="tommySpawn4" x="673.973" y="104.11">
    <point/>
   </object>
-  <object id="5" x="672.603" y="97.2603">
+ </objectgroup>
+ <objectgroup id="8" name="spawn5">
+  <object id="19" name="tommySpawn5" x="639.726" y="421.918">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="9" name="spawn6">
+  <object id="20" name="tommySpawn6" x="543.836" y="580.822">
    <point/>
   </object>
  </objectgroup>
