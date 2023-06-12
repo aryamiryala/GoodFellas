@@ -270,7 +270,7 @@ class Play1 extends Phaser.Scene{
         this.gameOver = true;
         this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', textConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
-        console.log('bruh');
+        
         
     }
 

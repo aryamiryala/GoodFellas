@@ -19,7 +19,7 @@ let config = {
         }
 
     }, 
-    scene: [Menu, PlayTitle, Play1Title, Play1, Play2Title, Play2]
+    scene: [Menu, PlayTitle, Play1Title, Play1, Play2Title, Play2, Play3Title, Play3]
 }
 
 let game = new Phaser.Game(config);

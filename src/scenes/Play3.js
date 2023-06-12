@@ -1,7 +1,7 @@
-class Play2 extends Phaser.Scene{
+class Play3 extends Phaser.Scene{
     constructor(){
         super({
-            key: "play2Scene",
+            key: "play3Scene",
             physics: {
                 arcade: {
                     debug: true
@@ -35,7 +35,7 @@ class Play2 extends Phaser.Scene{
     }
     create(){
 
-        this.clock = 3000/100; 
+        this.clock = 2000/100; 
 
         this.gameOver = false; 
 
@@ -207,7 +207,7 @@ class Play2 extends Phaser.Scene{
             }
             
             if(keyLEFT.isDown){
-                this.direction.x = -1
+                this.direction.x = -0.20
                 if (this.left == false && keyUP.isUp && keyDOWN.isUp){
                     this.spider.play("left")
                     this.left = true;
@@ -217,7 +217,7 @@ class Play2 extends Phaser.Scene{
                 }
             }
             else if(keyRIGHT.isDown){
-                this.direction.x = 1
+                this.direction.x = 0.20
                 if (this.right == false && keyUP.isUp && keyDOWN.isUp){
                     this.spider.play("right")
                     this.left = false;
@@ -227,7 +227,7 @@ class Play2 extends Phaser.Scene{
                 }
             }
             if(keyUP.isDown){
-                this.direction.y = -1
+                this.direction.y = -0.20
                 if (this.backward == false){
                     this.spider.play("backward")
                     this.left = false;
@@ -237,7 +237,7 @@ class Play2 extends Phaser.Scene{
                 }
             }
             else if(keyDOWN.isDown){
-                this.direction.y = 1
+                this.direction.y = 0.20
                 if (this.forward == false){
                     this.spider.play("forward")
                     this.left = false;
