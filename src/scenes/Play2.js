@@ -28,6 +28,7 @@ class Play2 extends Phaser.Scene{
         this.load.image('tilesetImage', 'bar_tileset.png');
         this.load.tilemapTiledJSON('tilemapJSON', 'map.json');
         this.load.image('beer', 'Beer_Bottle.png');
+        this.load.image('nothingness', 'transparent.png')
 
     }
     create(){
@@ -59,8 +60,8 @@ class Play2 extends Phaser.Scene{
         this.spider = this.physics.add.sprite(102, 102, 'spider', 0, 0)
         this.tommy = this.physics.add.sprite(randomSpawn.x, randomSpawn.y, 'tommy', 0, 0).setScale(0.20)
 
-        this.bottle = this.physics.add.sprite(300, 50, 'beer').setScale(0.1);
-        this.bottle.body.setSize(100, 10, true);
+        this.empty = this.physics.add.sprite(350, 30, 'nothingness').setScale(0.2);
+        this.empty.body.setSize(970, 350, true);
         this.spawndrink = false;
 
 
