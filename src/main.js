@@ -1,10 +1,18 @@
-// Arya Miryala
-// Brennen Tsang
-// Arcade Physics and Matter Physics used
-// Camera, tilemap, and timer used in second scene
+/* 
+Made by:
+Arya Miryala
+Brennen Tsang
 
-// Beer Bottle: <a href='https://pngtree.com/so/Pixel'>Pixel png from pngtree.com/</a>
-// Arrows: <a href='https://pngtree.com/so/Vector'>Vector png from pngtree.com/</a>
+Five Phaser's major components:
+1) Arcade Physics used in second and third scene
+2) Camera
+3) Tilemap 
+4) Timer used in second scene
+5) Matter Physics used in first scene
+6) Text objects
+
+Beer Bottle: <a href='https://pngtree.com/so/Pixel'>Pixel png from pngtree.com/</a>
+Arrows: <a href='https://pngtree.com/so/Vector'>Vector png from pngtree.com/</a> */
 let config = {
     type: Phaser.CANVAS, 
     render: {
