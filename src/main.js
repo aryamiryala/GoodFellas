@@ -28,13 +28,13 @@ let config = {
         }
 
     }, 
-    scene: [Menu, PlayTitle, Play1Title, Play1, Play2Title, Play2, Play3Title, Play3]
+    scene: [Menu, PlayTitle, Play1Title, Play1, Play2Title, Play2, Play3Title, Play3, Credit]
 }
 
 let game = new Phaser.Game(config);
 
 //reserve keyboard vars
-let keyUP, keyDOWN, keyLEFT, keyRIGHT, keyI, keyR, keyM, keyArrowR; 
+let keyUP, keyDOWN, keyLEFT, keyRIGHT, keyI, keyR, keyM, keyArrowR, keyC; 
 
 //set UI sizes
 let borderUISize = game.config.height / 15; 

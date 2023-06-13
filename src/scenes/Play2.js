@@ -4,7 +4,7 @@ class Play2 extends Phaser.Scene{
             key: "play2Scene",
             physics: {
                 arcade: {
-                    debug: false
+                    debug: true
                 }
             }
         });
