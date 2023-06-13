@@ -4,8 +4,8 @@ class Play1 extends Phaser.Scene{
     }
     preload(){
         this.load.image('parkinglot', './assets/parkinglot.png');
-        this.load.image('audi', './assets/audi.png');
-        this.load.image('blackviper', './assets/black_viper.png');
+        this.load.image('audi', './assets/Audi.png');
+        this.load.image('blackviper', './assets/Black_viper.png');
         this.load.image('taxi', './assets/taxi.png');
         this.load.image('minivan', './assets/Mini_van.png');
         this.load.image('truck', './assets/truck.png');
