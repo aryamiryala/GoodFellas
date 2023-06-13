@@ -33,9 +33,9 @@ class PlayTitle extends Phaser.Scene{
         };
        
 
-        this.add.text(game.config.width/2, game.config.height/6.5, 'Press up arrow to play scene 1', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/1.5, 'Press up arrow to play scene 1', menuConfig).setOrigin(0.5);
     
-        this.add.text(game.config.width/2, game.config.height/1.6, 'Press down arrow to play scene 2', menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/1.4, 'Press down arrow to play scene 2', menuConfig).setOrigin(0.5);
 
         this.add.text(game.config.width/2, game.config.height/1.3, 'Press -> to play scene 3', menuConfig).setOrigin(0.5);
 

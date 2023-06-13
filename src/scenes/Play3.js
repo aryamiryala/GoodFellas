@@ -29,13 +29,14 @@ class Play3 extends Phaser.Scene{
         this.load.tilemapTiledJSON('tilemapJSON', 'map.json');
         this.load.image('beer', 'Beer_Bottle.png');
         this.load.image('nothingness', 'transparent.png')
+        this.load.image('arrow', 'Arrow.png')
         this.load.audio('sfx_background', './assets/background.mp3');
 
 
     }
     create(){
 
-        this.clock = 2000/100; 
+        this.clock = 1700/100; 
 
         this.gameOver = false; 
 
@@ -108,6 +109,23 @@ class Play3 extends Phaser.Scene{
         // overlap between player and drink cabinet
         this.physics.add.overlap(this.spider, this.empty, this.DrinkPickUp, null, this);
 
+        // arrow pngs for direction to drink cabinet
+        const mssg = `
+        Follow the arrows
+        to get beer
+        `
+        this.add.text(100, 40, mssg , timeConfig);
+
+        this.firstarrow = this.add.sprite(130, 150, 'arrow').setScale(0.2);
+        this.firstarrow.angle = 45;
+
+        this.secondarrow = this.add.sprite(200, 200, 'arrow').setScale(0.2);
+
+        this.thirdarrow = this.add.sprite(270, 150, 'arrow').setScale(0.2);
+        this.thirdarrow.angle = -45;
+
+        this.fourtharrow = this.add.sprite(320, 100, 'arrow').setScale(0.2);
+        this.fourtharrow.angle = -45
 
         //animation for spider
         this.anims.create({
@@ -280,8 +298,9 @@ class Play3 extends Phaser.Scene{
         
         if(this.clock == 0 && this.gameOver == false){
             this.cameras.main.setZoom(1);
-            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', textConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 32, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2, 'YOU DIED', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 32, 'Press (R) to Restart to try and win', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'or Press (M) to go back to menu', textConfig).setOrigin(0.5);
             this.gameOver = true;
 
         }
@@ -307,8 +326,9 @@ class Play3 extends Phaser.Scene{
             this.stop = true;
             this.gameOver = true;
             this.add.text(game.config.width/2, game.config.height/2, 'GOOD JOB SPIDER', textConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 32, 'You live this time...', textConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 32, 'Wait, this was not part of the script...', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Fine, you live for now...', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 96, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
         }
     }
 

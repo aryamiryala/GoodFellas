@@ -29,6 +29,7 @@ class Play2 extends Phaser.Scene{
         this.load.tilemapTiledJSON('tilemapJSON', 'map.json');
         this.load.image('beer', 'Beer_Bottle.png');
         this.load.image('nothingness', 'transparent.png')
+        this.load.image('arrow', 'Arrow.png')
         this.load.audio('sfx_background', './assets/background.mp3');
 
 
@@ -108,6 +109,24 @@ class Play2 extends Phaser.Scene{
         // overlap between player and drink cabinet
         this.physics.add.overlap(this.spider, this.empty, this.DrinkPickUp, null, this);
 
+        // arrow pngs for direction to drink cabinet
+        const mssg = `
+        Follow the arrows
+        to get beer
+        `
+        this.add.text(100, 40, mssg , timeConfig);
+
+        this.firstarrow = this.add.sprite(130, 150, 'arrow').setScale(0.2);
+        this.firstarrow.angle = 45;
+
+        this.secondarrow = this.add.sprite(200, 200, 'arrow').setScale(0.2);
+
+        this.thirdarrow = this.add.sprite(270, 150, 'arrow').setScale(0.2);
+        this.thirdarrow.angle = -45;
+
+        this.fourtharrow = this.add.sprite(320, 100, 'arrow').setScale(0.2);
+        this.fourtharrow.angle = -45
+
 
         //animation for spider
         this.anims.create({
@@ -177,6 +196,7 @@ class Play2 extends Phaser.Scene{
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R);
         keyM = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.M);
+        keyArrowR = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
 
     }
@@ -188,6 +208,10 @@ class Play2 extends Phaser.Scene{
         }
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyM)){
             this.scene.start("menuScene");
+            this.backgroundSong.destroy();
+        }
+        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyArrowR)){
+            this.scene.start("play3TitleScene");    
             this.backgroundSong.destroy();
         }
         //Player movement
@@ -308,7 +332,9 @@ class Play2 extends Phaser.Scene{
             this.gameOver = true;
             this.add.text(game.config.width/2, game.config.height/2, 'GOOD JOB SPIDER', textConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 32, 'You live this time...', textConfig).setOrigin(0.5);
-            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'But can you deliver the next one?', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 96, 'Press (->) to start next scene(scene 3) or', textConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 128, 'Press (R) to Restart or (M) to Menu', textConfig).setOrigin(0.5);
         }
     }
 

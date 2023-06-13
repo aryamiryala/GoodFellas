@@ -8,7 +8,7 @@ class Play3Title extends Phaser.Scene{
     }
     
     create(){
-        this.background= this.add.tileSprite(60, 0, 640, 480, 'title').setOrigin(0,0);
+        this.background= this.add.tileSprite(60, -10, 640, 480, 'title').setOrigin(0,0);
 
          //add music, set volume, play it
          this.backgroundSong = this.sound.add('sfx_background', {volume: 0.5});   
@@ -48,8 +48,7 @@ class Play3Title extends Phaser.Scene{
         However Spider is walking at a slower pace because Tommy shoots him in the foot. 
         Your objective in this scene is to try and deliver drinks to Tommy before the time runs out. 
         In this scene you get less time on the clock and Spider moves slower. 
-        It should be very hard to beat this level  
-        Tommy kills Spider in the movie, making it hard to beat this level
+        To simulate Tommy killing Spider in the movie, this level is difficult to beat
         Get the drink from the drink bar and deliver it to Tommy before time runs out.
         IMPORTANT! ! ! : Use the W, A, S, D to move around as Spider. 
         Good Luck!!! 

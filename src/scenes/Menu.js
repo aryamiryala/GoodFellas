@@ -54,11 +54,11 @@ class Menu extends Phaser.Scene{
               this.scene.start("playTitleScene");  
               this.backgroundSong.destroy();  
         }
-        if (Phaser.Input.Keyboard.JustDown(keyI)) {
+        // if (Phaser.Input.Keyboard.JustDown(keyI)) {
            
-            // this.sound.play('sfx_select');
-              this.scene.start("instructionScene");    
-        }
+        //     // this.sound.play('sfx_select');
+        //       this.scene.start("instructionScene");    
+        // }
 
 
     }

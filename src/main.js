@@ -4,6 +4,7 @@
 // Camera, tilemap, and timer used in second scene
 
 // Beer Bottle: <a href='https://pngtree.com/so/Pixel'>Pixel png from pngtree.com/</a>
+// Arrows: <a href='https://pngtree.com/so/Vector'>Vector png from pngtree.com/</a>
 let config = {
     type: Phaser.CANVAS, 
     render: {
@@ -25,7 +26,7 @@ let config = {
 let game = new Phaser.Game(config);
 
 //reserve keyboard vars
-let keyUP, keyDOWN, keyLEFT, keyRIGHT, keyI, keyR, keyM; 
+let keyUP, keyDOWN, keyLEFT, keyRIGHT, keyI, keyR, keyM, keyArrowR; 
 
 //set UI sizes
 let borderUISize = game.config.height / 15; 
